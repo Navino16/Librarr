@@ -13,7 +13,7 @@ export default defineConfig({
         'server/**/*.d.ts',
         'server/entity/**',
       ],
-      reporter: ['text', 'html'],
+      reporter: ['text', 'html', 'cobertura'],
       reportsDirectory: '.reports/coverage',
       thresholds: {
         statements: 80,
