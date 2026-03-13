@@ -1,0 +1,76 @@
+---
+# Authelia dev configuration for OIDC testing with Librarr
+
+server:
+  address: 'tcp://:9091'
+
+log:
+  level: debug
+
+authentication_backend:
+  file:
+    path: /config/users_database.yml
+
+session:
+  secret: authelia-dev-session-secret
+  cookies:
+    - domain: localhost
+      authelia_url: 'http://localhost:9091'
+
+storage:
+  local:
+    path: /config/db.sqlite3
+
+notifier:
+  filesystem:
+    filename: /config/notification.txt
+
+access_control:
+  default_policy: one_factor
+
+identity_providers:
+  oidc:
+    hmac_secret: authelia-dev-hmac-secret
+    jwks:
+      - key_id: main
+        algorithm: RS256
+        key: |
+          -----BEGIN RSA PRIVATE KEY-----
+          MIIEpAIBAAKCAQEA0Z3VS5JJcds3xfn/ygWep4PAtGoKPMELJVPTMT6NWB0zzPMz
+          0p+sHLyE/AKLB5BFPqLRFqMQ8LOkz1GQbK8tIGJCqz/uOMwPJM8CzPCK3rMynGR
+          fCY3VwZ6/Zk5fN2aVEt1kPCfFfxH/CJu+6q2a+PtGS2F8+xHHR2w9GcXB5gHISn
+          FZZFR0FvDhiGxsNLpFBmv+r/vb2HHW4W+5MQKhSnFZRdRZy2vKg5gMOA3c7f0LG
+          fE1oVnhMBH+m9SX+RRVB1VK04BYNLjGHT+pZ6bMGrEWmGFOEy7xRdGr1mMHWZNi
+          bJXSh/FDLkXKqzRqL0O+XM/OYBxDhVPR0B3K8wIDAQABAoIBAC1MyoPl4xPGo7w0
+          +s/FPnzDNLmPFqzMqLl+DRy8LqJG+2v3FKLG0EF/McP/CRVBH4pJAd3flRz5qEG
+          SkK8zO5q8G9z8XMt0r1DQMRH5BiLGQk8Kz0PNoEFaK/OMvCLGlSuNNPkL9q2w8x
+          JbYkPW3HsGPhB/T4iC/3K5WZqhU7dWH2U5wqJZ8D0fxMTNS0ZYdNS5kNUP9a0B5
+          p4D6YGq1fv4FsGy6Z2SqyGpRvBPq+DWVmRW9z0NX4p/Dv+v2s4t1N5e0BXUQRYP
+          Dh+c0VPEL3P3xB+H2kUdNM5dXLjLfN+Gf5S2n7ZJR5RfuVW/r0y7e3YE3m7LXCH
+          s6f+yBECgYEA5iOKHkNv0BRNAEE9t2tDO5hN+9C4/Lf9WA7IQZWwk7NtHJx2f0C
+          J0tBVEr1azPC9BJl4Z5S3mHs2S1xSm1JSt+FMPZ0OjD0fXfnCNZzFVWzBp22b5N
+          e+r6O0x1U1q56e3sH/UZS3LNtCqgj5LrlCjkIQqv5T1x7i3CXSZ9C1ECgYEA6Gh
+          mWjyzmW3F6UoVBbJtZ2+P3pN9F8WsFQOKF5sKTCIpkG7DTKnZR7yKJFxyD1Sc9JI
+          oOMoYXZz+jfwEL32+0kFsdlJCHvUzLV/kZTD7LS+o/F9w2N/0GqEqq5+sTmkCgV
+          VrQ0mCbQ5nXJj+Hy1/Q0K2r8sBXNfVDRs0WtYsCgYBl3GMeVG1j3Yqe5l3aE2w9
+          4OdQ0OTPnVHn6i1X3rWY3pkDMmE0J2aSLXTLCCHnJYFTkP7ux3b6T2GNHhx+aTI
+          sW3m0c8M6Ll2kDNQNoNsQ0S4c1OHINIfM+H3VBG6lk1S8g+xX5wLCVYF7JHlBjB
+          k0nD3V3r2YbHBEiY6KgvYQKBgQCHdMu9Hg1L5WOaDCLlMlIAL/oD0PSR9m7oHJM
+          r5YYqeOOL0n9qUB/B1P2B3MRcCf/M0cyhMLJahI06oJXL7V9GFqjBSIbf4Z7sVH
+          VdAEPNJ+KZ0uo9dRQcwn7S7J9gm4r/1f1c9t7u3N4j3GXPm5Vj+JfF7P3OgDRh
+          VrqixwKBgQDd5nnFa8pKxJSqFwJlBlW3gJqJ5h1r+g5VnkLsn7MgFDOK8Z8LjNb
+          MSyY1P3fJN4kUr+M4TE5KWTGfE4S7V6h3fDaFpHNiD4DypIt6gM/Jgm6dA7lWhQz
+          ij3F3HPIshcQPKQZ9aqM9N67SD1X+eFkfS/NRdF9p5j+BoEUXBjMHA==
+          -----END RSA PRIVATE KEY-----
+    clients:
+      - client_id: librarr
+        client_name: Librarr
+        client_secret: '$plaintext$librarr-dev-secret'
+        authorization_policy: one_factor
+        redirect_uris:
+          - 'http://localhost:5055/api/v1/auth/oidc/authelia/callback'
+        scopes:
+          - openid
+          - email
+          - profile
+        token_endpoint_auth_method: client_secret_post

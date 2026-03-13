@@ -1,0 +1,77 @@
+services:
+  librarr:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: librarr-dev
+    ports:
+      - '5055:5055'
+    volumes:
+      # Source code + node_modules (bind mount)
+      - .:/app
+    environment:
+      - NODE_ENV=development
+      - SESSION_SECRET=dev-secret
+      - LOG_LEVEL=debug
+      - DB_SYNCHRONIZE=true
+      - WATCHPACK_POLLING=true  # Needed for HMR on some Docker/WSL setups
+      - USE_WEBPACK=true        # Turbopack panics in Docker, use Webpack
+    depends_on:
+      - audiobookshelf
+      - readarr
+      - mailpit
+
+  ## https://github.com/axllent/mailpit
+  mailpit:
+    image: axllent/mailpit:latest
+    container_name: mailpit-dev
+    ports:
+      - '8025:8025'   # Web UI
+      - '1026:1025'   # SMTP
+    environment:
+      - TZ=Europe/Paris
+
+  ## https://github.com/advplyr/audiobookshelf
+  audiobookshelf:
+    image: ghcr.io/advplyr/audiobookshelf:2.32.1
+    container_name: audiobookshelf-dev
+    ports:
+      - '13378:80'
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Paris
+    volumes:
+      - abs-media:/media
+      - abs-config:/config
+      - abs-metadata:/metadata
+
+  ## https://www.authelia.com/ - OIDC provider for dev testing
+  authelia:
+    image: authelia/authelia:latest
+    container_name: authelia-dev
+    ports:
+      - '9091:9091'
+    volumes:
+      - ./docker/authelia:/config
+    environment:
+      - TZ=Europe/Paris
+
+  ## https://github.com/pennydreadful/bookshelf
+  readarr:
+    image: ghcr.io/pennydreadful/bookshelf:hardcover
+    container_name: readarr-dev
+    ports:
+      - '8787:8787'
+    entrypoint: /bin/sh -c "mkdir -p /media/books && chown abc:abc /media/books /downloads && exec /init"
+    volumes:
+      - readarr-config:/config
+      - abs-media:/media
+      - readarr-downloads:/downloads
+
+volumes:
+  abs-media:
+  abs-config:
+  abs-metadata:
+  readarr-config:
+  readarr-downloads:

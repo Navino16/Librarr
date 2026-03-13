@@ -1,0 +1,18 @@
+services:
+  librarr:
+    build: .
+    container_name: librarr
+    restart: unless-stopped
+    ports:
+      - '5055:5055'
+    volumes:
+      - ./config:/app/config
+    environment:
+      - NODE_ENV=production
+      - SESSION_SECRET=${SESSION_SECRET:?SESSION_SECRET is required - generate a strong random value}
+      - LOG_LEVEL=info
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:5055/api/v1/ping']
+      interval: 30s
+      timeout: 10s
+      retries: 3

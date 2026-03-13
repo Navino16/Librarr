@@ -1,0 +1,10 @@
+node_modules
+.next
+dist
+.git
+config
+*.md
+.env*
+.claude
+.playwright-mcp
+*.png

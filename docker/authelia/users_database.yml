@@ -1,0 +1,12 @@
+---
+# Authelia dev users for OIDC testing
+# All passwords are: "password"
+users:
+  authelia:
+    displayname: Authelia Test User
+    # password: "password" (argon2id)
+    password: "$argon2id$v=19$m=65536,t=3,p=4$YWJjZGVmMTIzNDU2Nzg5MA$RNnMXYP7HtzVELwdoFHwEy4uW3+g3aO7+y0xQ3pG3Rg"
+    email: authelia@example.com
+    groups:
+      - admins
+      - dev

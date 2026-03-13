@@ -1,0 +1,112 @@
+@import "tailwindcss";
+
+@theme {
+  --color-librarr-primary: #6366f1;
+  --color-librarr-primary-light: #818cf8;
+  --color-librarr-bg: #0f172a;
+  --color-librarr-bg-light: #1e293b;
+  --color-librarr-bg-lighter: #334155;
+  --color-librarr-text: #f8fafc;
+  --color-librarr-text-muted: #94a3b8;
+  --color-librarr-accent: #22d3ee;
+  --color-librarr-success: #22c55e;
+  --color-librarr-warning: #f59e0b;
+  --color-librarr-danger: #ef4444;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-librarr-bg);
+    color: var(--color-librarr-text);
+  }
+}
+
+select.input-field {
+  appearance: none;
+  padding-right: 2.5rem !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='%23cbd5e1' viewBox='0 0 20 20'%3E%3Cpath fill-rule='evenodd' d='M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06z' clip-rule='evenodd'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  background-size: 1.25rem;
+  cursor: pointer;
+}
+
+@utility btn-primary {
+  background-color: var(--color-librarr-primary);
+  color: white;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s;
+  cursor: pointer;
+  &:hover {
+    background-color: var(--color-librarr-primary-light);
+  }
+}
+
+@utility btn-secondary {
+  background-color: var(--color-librarr-bg-lighter);
+  color: var(--color-librarr-text);
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--color-librarr-bg-lighter);
+  transition: background-color 0.2s;
+  cursor: pointer;
+  &:hover {
+    background-color: var(--color-librarr-bg-light);
+  }
+}
+
+@utility btn-danger {
+  background-color: var(--color-librarr-danger);
+  color: white;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s;
+  cursor: pointer;
+  &:hover {
+    background-color: #dc2626;
+  }
+}
+
+@utility input-field {
+  width: 100%;
+  background-color: var(--color-librarr-bg-light);
+  border: 1px solid var(--color-librarr-bg-lighter);
+  border-radius: 0.5rem;
+  padding: 0.625rem 1rem;
+  color: var(--color-librarr-text);
+  transition: all 0.2s;
+  &::placeholder {
+    color: var(--color-librarr-text-muted);
+  }
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--color-librarr-primary);
+    border-color: transparent;
+  }
+}
+
+@utility card {
+  background-color: var(--color-librarr-bg-light);
+  border-radius: 0.75rem;
+  border: 1px solid var(--color-librarr-bg-lighter);
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+}
+
+@utility animate-fade-in {
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,50 @@
+node_modules/
+dist/
+.next/
+.next-setup/
+.next-test/
+*.js.map
+*.d.ts
+!next.config.js
+!tailwind.config.js
+!postcss.config.js
+!next-env.d.ts
+!server/types/**/*.d.ts
+.playwright-mcp
+.reports/
+
+# Config
+config/settings.json
+
+# Database
+config/db/
+config/*.db
+config/*.db-journal
+config/*.db-wal
+config/*.db-shm
+
+# Logs
+config/logs/
+
+# IDE
+.vscode/
+.idea/
+
+# E2E tests
+tests/e2e/.auth/
+tests/e2e/.test-config/
+tests/e2e/.test-config-setup/
+
+# Build cache
+tsconfig.tsbuildinfo
+
+# Local config
+.mcp.json
+
+# Personal
+TODO
+
+# OS
+.DS_Store
+Thumbs.db
+/monocart-report/

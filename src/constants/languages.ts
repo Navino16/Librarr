@@ -1,0 +1,28 @@
+export const availableLanguages = [
+  { code: 'any', label: 'Any' },
+  { code: 'en', label: 'English' },
+  { code: 'fr', label: 'Fran\u00e7ais' },
+  { code: 'de', label: 'Deutsch' },
+  { code: 'es', label: 'Espa\u00f1ol' },
+  { code: 'it', label: 'Italiano' },
+  { code: 'pt', label: 'Portugu\u00eas' },
+  { code: 'pt-BR', label: 'Portugu\u00eas (Brasil)' },
+  { code: 'nl', label: 'Nederlands' },
+  { code: 'sv', label: 'Svenska' },
+  { code: 'da', label: 'Dansk' },
+  { code: 'no', label: 'Norsk' },
+  { code: 'fi', label: 'Suomi' },
+  { code: 'pl', label: 'Polski' },
+  { code: 'cs', label: 'Ce\u0161tina' },
+  { code: 'hu', label: 'Magyar' },
+  { code: 'ro', label: 'Rom\u00e2n\u0103' },
+  { code: 'ru', label: '\u0420\u0443\u0441\u0441\u043a\u0438\u0439' },
+  { code: 'uk', label: '\u0423\u043a\u0440\u0430\u0457\u043d\u0441\u044c\u043a\u0430' },
+  { code: 'ja', label: '\u65e5\u672c\u8a9e' },
+  { code: 'zh', label: '\u4e2d\u6587' },
+  { code: 'ko', label: '\ud55c\uad6d\uc5b4' },
+  { code: 'ar', label: '\u0627\u0644\u0639\u0631\u0628\u064a\u0629' },
+  { code: 'tr', label: 'T\u00fcrk\u00e7e' },
+];
+
+export const languageCodes = availableLanguages.map((l) => l.code);
