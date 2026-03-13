@@ -17,5 +17,5 @@ export default defineConfig([
       '@typescript-eslint/no-explicit-any': 'off',
     },
   },
-  globalIgnores(['dist/**', 'node_modules/**', '.next/**', '.next-setup/**', 'monocart-report/**', '.reports/**', 'public/**']),
+  globalIgnores(['dist/**', 'node_modules/**', '.next/**', '.next-setup/**', '.next-test/**', 'monocart-report/**', '.reports/**', 'public/**']),
 ]);

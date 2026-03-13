@@ -42,7 +42,7 @@ router.get(
 
     // Batch count requests per user
     const userIds = users.map((u) => u.id);
-    let requestCounts: Record<number, number> = {};
+    const requestCounts: Record<number, number> = {};
     if (userIds.length > 0) {
       const bookCounts = await dataSource
         .getRepository(BookRequest)

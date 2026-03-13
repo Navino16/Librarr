@@ -249,7 +249,7 @@ router.post(
     }
 
     // Enforce quota (skip for ADMIN / BYPASS_QUOTA users — handled inside resolveEffectiveQuota)
-    const quotaLimit = resolveEffectiveQuota(user as any, format);
+    const quotaLimit = resolveEffectiveQuota(user, format);
     if (quotaLimit !== null) {
       const quotaUsed = await getQuotaUsage(user.id, format);
       if (quotaUsed >= quotaLimit) {

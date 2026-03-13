@@ -12,7 +12,7 @@ import type { LidarrAlbum } from '@server/types/servarr';
 import Settings from '../lib/settings';
 import { buildServerUrl } from '../lib/serverUrl';
 import { RequestStatus, WorkStatus } from '../constants/work';
-import { Permission, hasPermission } from '../lib/permissions';
+import { Permission } from '../lib/permissions';
 import logger from '../logger';
 
 /**
