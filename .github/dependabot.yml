@@ -7,8 +7,9 @@ updates:
     schedule:
       interval: "weekly"
     target-branch: "develop"
+    open-pull-requests-limit: 20
     groups:
-      ci-dependencies: 
+      ci-dependencies:
         applies-to: version-updates
         update-types:
           - "minor"
@@ -20,8 +21,23 @@ updates:
     schedule:
       interval: "weekly"
     target-branch: "develop"
+    open-pull-requests-limit: 20
     groups:
-      code-dependencies: 
+      code-dependencies:
+        applies-to: version-updates
+        update-types:
+          - "minor"
+          - "patch"
+
+  # Maintain dependencies for Docker images
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    target-branch: "develop"
+    open-pull-requests-limit: 20
+    groups:
+      docker-dependencies:
         applies-to: version-updates
         update-types:
           - "minor"
