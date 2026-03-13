@@ -60,7 +60,7 @@
     "@types/react-dom": "^19.2.3",
     "@vitest/coverage-v8": "^4.0.18",
     "autoprefixer": "^10.4.27",
-    "eslint": "^9.39.4",
+    "eslint": "^10.0.3",
     "eslint-config-next": "^16.1.6",
     "monocart-reporter": "^2.10.0",
     "nodemon": "^3.1.14",
