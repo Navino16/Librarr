@@ -11,7 +11,7 @@
 ```yaml
 services:
   librarr:
-    image: ghcr.io/your-org/librarr:latest  # or build from source
+    image: ghcr.io/navino16/librarr:latest  # or build from source
     container_name: librarr
     restart: unless-stopped
     ports:
@@ -78,7 +78,7 @@ config/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-org/librarr.git
+git clone https://github.com/navino16/librarr.git
 cd librarr
 ```
 
@@ -102,7 +102,7 @@ The Dockerfile uses a multi-stage build (Node 24 Alpine) that produces a minimal
 ### 1. Clone and install
 
 ```bash
-git clone https://github.com/your-org/librarr.git
+git clone https://github.com/navino16/librarr.git
 cd librarr
 npm install
 ```
