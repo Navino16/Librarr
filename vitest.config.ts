@@ -12,6 +12,8 @@ export default defineConfig({
       exclude: [
         'server/**/*.d.ts',
         'server/entity/**',
+        'server/types/**',
+        'server/models/**',
       ],
       reporter: ['text', 'html', 'cobertura'],
       reportsDirectory: '.reports/coverage',
