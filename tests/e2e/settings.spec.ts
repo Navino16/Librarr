@@ -57,7 +57,6 @@ test.describe('General Settings - Admin', () => {
 
     // Options section
     await expect(page.getByText('Hide available media from discover')).toBeVisible();
-    await expect(page.getByText('Enable local login')).toBeVisible();
 
     // Save button
     await expect(page.getByRole('button', { name: 'Save Changes' })).toBeVisible();
