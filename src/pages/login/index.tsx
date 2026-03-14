@@ -7,6 +7,12 @@ import { useUser } from '../../context/UserContext';
 import { useSettings } from '../../context/SettingsContext';
 import { apiPost } from '../../hooks/useApi';
 
+function safeReturnUrl(url: unknown): string {
+  if (typeof url !== 'string') return '/';
+  if (url.startsWith('/') && !url.startsWith('//')) return url;
+  return '/';
+}
+
 export default function LoginPage() {
   const router = useRouter();
   const { mutate } = useUser();
@@ -50,11 +56,7 @@ export default function LoginPage() {
     try {
       await apiPost('/auth/local', { email, password });
       mutate();
-      const returnUrl =
-        typeof router.query.returnUrl === 'string'
-          ? router.query.returnUrl
-          : '/';
-      router.push(returnUrl);
+      router.push(safeReturnUrl(router.query.returnUrl));
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Login failed');
     } finally {

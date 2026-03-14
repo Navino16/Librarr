@@ -50,7 +50,7 @@ interface SearchResponse {
 // ---------------------------------------------------------------------------
 
 router.get('/', isAuthenticated, asyncHandler(async (req: Request, res: Response) => {
-  const query = req.query.query as string;
+  const query = typeof req.query.query === 'string' ? req.query.query : '';
   const page = safeInt(req.query.page as string, 1);
   const type = req.query.type as 'book' | 'music' | 'all' | undefined;
 

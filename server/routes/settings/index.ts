@@ -23,7 +23,7 @@ import notificationManager from '../../lib/notifications';
 import emailAgent from '../../lib/notifications/agents/email';
 import type { SmtpSettings } from '@server/types/settings';
 
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const EMAIL_REGEX = /^[^\s@]+@[^\s@.]+(\.[^\s@.]+)+$/;
 
 const isValidPort = (port: unknown): port is number =>
   typeof port === 'number' && Number.isFinite(port) && port >= 1 && port <= 65535;
@@ -34,6 +34,14 @@ const initializeLimiter = rateLimit({
   standardHeaders: true,
   legacyHeaders: false,
   message: { error: 'Too many attempts. Please try again later.' },
+});
+
+const testConnectionLimiter = rateLimit({
+  windowMs: 60 * 1000,
+  max: 20,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: 'Too many test requests. Please try again later.' },
 });
 
 const router = Router();
@@ -728,6 +736,7 @@ router.get(
 // Test connections — allow unauthenticated access during setup (app not initialized)
 router.post(
   '/readarr/test',
+  testConnectionLimiter,
   authOrSetup(Permission.MANAGE_SETTINGS_READARR),
   async (req: Request, res: Response) => {
     try {
@@ -751,6 +760,7 @@ router.post(
 
 router.post(
   '/lidarr/test',
+  testConnectionLimiter,
   authOrSetup(Permission.MANAGE_SETTINGS_LIDARR),
   async (req: Request, res: Response) => {
     try {
@@ -774,6 +784,7 @@ router.post(
 
 router.post(
   '/audiobookshelf/test',
+  testConnectionLimiter,
   authOrSetup(Permission.MANAGE_SETTINGS_MEDIA_SERVERS),
   async (req: Request, res: Response) => {
     try {
@@ -797,6 +808,7 @@ router.post(
 
 router.post(
   '/jellyfin/test',
+  testConnectionLimiter,
   authOrSetup(Permission.MANAGE_SETTINGS_MEDIA_SERVERS),
   async (req: Request, res: Response) => {
     try {
@@ -817,6 +829,7 @@ router.post(
 
 router.post(
   '/plex/test',
+  testConnectionLimiter,
   authOrSetup(Permission.MANAGE_SETTINGS_MEDIA_SERVERS),
   async (req: Request, res: Response) => {
     try {
