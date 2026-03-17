@@ -1,17 +1,20 @@
+import Image from 'next/image';
+
 interface LogoProps {
   size?: 'sm' | 'md' | 'lg';
   className?: string;
 }
 
-const heightMap = { sm: 28, md: 36, lg: 56 };
+const sizeMap = { sm: { w: 120, h: 28 }, md: { w: 154, h: 36 }, lg: { w: 240, h: 56 } };
 
 const Logo = ({ size = 'md', className = '' }: LogoProps) => (
-  <img
+  <Image
     src="/logo_full.svg"
     alt="Librarr"
-    height={heightMap[size]}
-    style={{ height: heightMap[size] }}
+    width={sizeMap[size].w}
+    height={sizeMap[size].h}
     className={className}
+    priority
   />
 );
 
