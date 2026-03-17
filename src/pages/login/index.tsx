@@ -6,6 +6,13 @@ import { useTranslations } from 'next-intl';
 import { useUser } from '../../context/UserContext';
 import { useSettings } from '../../context/SettingsContext';
 import { apiPost } from '../../hooks/useApi';
+import Logo from '../../components/Common/Logo';
+
+function safeReturnUrl(url: unknown): string {
+  if (typeof url !== 'string') return '/';
+  if (url.startsWith('/') && !url.startsWith('//')) return url;
+  return '/';
+}
 
 export default function LoginPage() {
   const router = useRouter();
@@ -50,11 +57,7 @@ export default function LoginPage() {
     try {
       await apiPost('/auth/local', { email, password });
       mutate();
-      const returnUrl =
-        typeof router.query.returnUrl === 'string'
-          ? router.query.returnUrl
-          : '/';
-      router.push(returnUrl);
+      router.push(safeReturnUrl(router.query.returnUrl));
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Login failed');
     } finally {
@@ -143,10 +146,8 @@ export default function LoginPage() {
       </Head>
       <div className="min-h-screen bg-librarr-bg flex items-center justify-center px-4">
         <div className="w-full max-w-md">
-          <div className="text-center mb-8">
-            <h1 className="text-4xl font-bold text-librarr-primary mb-2">
-              {settings?.appTitle || 'Librarr'}
-            </h1>
+          <div className="flex flex-col items-center mb-8">
+            <Logo size="lg" className="mb-2" />
             <p className="text-librarr-text-muted">{t('signInToAccount')}</p>
           </div>
 

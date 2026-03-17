@@ -26,6 +26,10 @@ RUN npm ci --omit=dev
 FROM base AS runner
 WORKDIR /app
 
+LABEL org.opencontainers.image.source="https://github.com/Navino16/Librarr"
+LABEL org.opencontainers.image.description="A media request management system for books and music"
+LABEL org.opencontainers.image.licenses="GPL-3.0"
+
 ENV NODE_ENV=production
 ENV PORT=5055
 ENV NEXT_TELEMETRY_DISABLED=1

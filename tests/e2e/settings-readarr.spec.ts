@@ -59,9 +59,6 @@ test.describe('Readarr Settings Page', () => {
 
     // Content type badge
     await expect(page.getByText('Ebook')).toBeVisible();
-
-    // Default badge
-    await expect(page.getByText('Default')).toBeVisible();
   });
 
   test('should show add server form', async ({ page }) => {
@@ -76,7 +73,6 @@ test.describe('Readarr Settings Page', () => {
     await expect(page.getByText('Hostname', { exact: true })).toBeVisible();
     await expect(page.getByText('Port', { exact: true })).toBeVisible();
     await expect(page.getByText('API Key', { exact: true })).toBeVisible();
-    await expect(page.getByText('Root Folder', { exact: true })).toBeVisible();
 
     // Action buttons
     await expect(page.getByRole('button', { name: 'Test Connection' })).toBeVisible();

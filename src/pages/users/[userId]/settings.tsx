@@ -7,7 +7,6 @@ import { useTranslations } from 'next-intl';
 import { useUser } from '../../../context/UserContext';
 import { useSettings } from '../../../context/SettingsContext';
 import { apiPost, apiPut, fetcher } from '../../../hooks/useApi';
-import type { UserQuotaResponse } from '../../../types/api';
 import { Permission, hasPermission, getAllowedNotificationTypes } from '../../../constants/permissions';
 import type { PermissionRole } from '../../../types/api';
 import { availableLanguages } from '../../../constants/languages';

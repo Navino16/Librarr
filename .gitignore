@@ -37,6 +37,7 @@ tests/e2e/.test-config-setup/
 
 # Build cache
 tsconfig.tsbuildinfo
+next-env.d.ts
 
 # Local config
 .mcp.json

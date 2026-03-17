@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Head from 'next/head';
 import useSWR from 'swr';
 import { useTranslations } from 'next-intl';
@@ -46,16 +46,10 @@ export default function ReadarrSettingsPage() {
 
   const isEditing = adding || editingId !== null;
 
-  // Fetch profiles/tags when editing an existing server
-  useEffect(() => {
-    if (editingId === null) {
-      setServiceData(null);
-      setServiceError(false);
-      return;
-    }
+  const fetchServiceData = (serverId: number) => {
     setLoadingService(true);
     setServiceError(false);
-    fetcher(`/api/v1/service/readarr/${editingId}`)
+    fetcher(`/api/v1/service/readarr/${serverId}`)
       .then((data: ServiceData) => {
         setServiceData(data);
         setLoadingService(false);
@@ -64,7 +58,7 @@ export default function ReadarrSettingsPage() {
         setServiceError(true);
         setLoadingService(false);
       });
-  }, [editingId]);
+  };
 
   const handleTest = async () => {
     setTestResult(null);
@@ -104,6 +98,7 @@ export default function ReadarrSettingsPage() {
     });
     setTestResult(null);
     setEditingId(server.id);
+    fetchServiceData(server.id);
   };
 
   const handleCancel = () => {

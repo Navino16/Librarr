@@ -1,7 +1,7 @@
 import dataSource from '../../datasource';
 import { User } from '../../entity/User';
 import { UserSettings } from '../../entity/UserSettings';
-import { Permission, hasPermission, getAllowedNotificationTypes } from '../permissions';
+import { Permission, getAllowedNotificationTypes } from '../permissions';
 import notificationManager, { NotificationPayload, NotificationType } from './index';
 import logger from '../../logger';
 
