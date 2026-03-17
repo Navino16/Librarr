@@ -1,6 +1,20 @@
-# Librarr
+<p align="center">
+  <img src="public/logo_full.svg" alt="Librarr" width="340">
+</p>
 
-A media request management system for books and music. Users can discover, request, and track ebooks, audiobooks, and music albums, with automated fulfillment through Readarr and Lidarr.
+<p align="center">
+  A media request management system for books and music.<br/>
+  Discover, request, and track ebooks, audiobooks, and music albums,<br/>
+  with automated fulfillment through Readarr and Lidarr.
+</p>
+
+<p align="center">
+  <a href="docs/01-installation.md">Installation</a> &bull;
+  <a href="docs/02-getting-started.md">Getting Started</a> &bull;
+  <a href="docs/03-development.md">Development</a>
+</p>
+
+---
 
 Built with Express 5, Next.js 16, React 19, and SQLite.
 
