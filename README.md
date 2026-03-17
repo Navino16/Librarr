@@ -9,6 +9,17 @@
 </p>
 
 <p align="center">
+  <a href="https://github.com/Navino16/Librarr/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/Navino16/Librarr/ci.yml?label=CI&style=flat-square" alt="CI"></a>
+  <a href="https://github.com/Navino16/Librarr/actions/workflows/build.yml"><img src="https://img.shields.io/github/actions/workflow/status/Navino16/Librarr/build.yml?label=Build&style=flat-square&logo=docker" alt="Build"></a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/Navino16/Librarr/pkgs/container/librarr"><img src="https://img.shields.io/badge/ghcr.io-librarr-blue?style=flat-square&logo=docker" alt="Docker"></a>
+  <a href="https://github.com/Navino16/Librarr"><img src="https://img.shields.io/github/stars/Navino16/Librarr?style=flat-square" alt="Stars"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/github/license/Navino16/Librarr?style=flat-square" alt="License"></a>
+</p>
+
+<p align="center">
   <a href="docs/01-installation.md">Installation</a> &bull;
   <a href="docs/02-getting-started.md">Getting Started</a> &bull;
   <a href="docs/03-development.md">Development</a>
