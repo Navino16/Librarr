@@ -15,6 +15,7 @@
 
 <p align="center">
   <a href="https://github.com/Navino16/Librarr/pkgs/container/librarr"><img src="https://img.shields.io/badge/ghcr.io-librarr-blue?style=flat-square&logo=docker" alt="Docker"></a>
+  <a href="https://discord.gg/XgCBF3sMSh"><img src="https://img.shields.io/discord/1483405134003175607?style=flat-square&logo=discord&label=Discord" alt="Discord"></a>
   <a href="https://github.com/Navino16/Librarr"><img src="https://img.shields.io/github/stars/Navino16/Librarr?style=flat-square" alt="Stars"></a>
   <a href="LICENSE"><img src="https://img.shields.io/github/license/Navino16/Librarr?style=flat-square" alt="License"></a>
 </p>
