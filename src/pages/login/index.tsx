@@ -99,11 +99,7 @@ export default function LoginPage() {
             if (popup && !popup.closed) popup.close();
             setPlexLoading(false);
             mutate();
-            const returnUrl =
-              typeof router.query.returnUrl === 'string'
-                ? router.query.returnUrl
-                : '/';
-            router.push(returnUrl);
+            router.push(safeReturnUrl(router.query.returnUrl));
           }
         } catch (err) {
           if (plexPollRef.current) clearInterval(plexPollRef.current);
@@ -130,10 +126,7 @@ export default function LoginPage() {
   }, [mutate, router]);
 
   const handleOidcLogin = (providerId: string) => {
-    const returnUrl =
-      typeof router.query.returnUrl === 'string'
-        ? router.query.returnUrl
-        : '/';
+    const returnUrl = safeReturnUrl(router.query.returnUrl);
     window.location.href = `/api/v1/auth/oidc/${providerId}/authorize?returnUrl=${encodeURIComponent(returnUrl)}`;
   };
 
