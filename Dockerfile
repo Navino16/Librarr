@@ -39,7 +39,7 @@ RUN adduser --system --uid 1001 librarr
 RUN apk add --no-cache su-exec
 
 COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/.next/standalone ./.next/standalone
+COPY --from=builder /app/.next/standalone/.next ./.next
 COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder /app/public ./public
 COPY --from=prod-deps /app/node_modules ./node_modules
