@@ -13,6 +13,7 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: [
     ['list'],
+    ['junit', { outputFile: '.reports/junit-e2e.xml' }],
     ['monocart-reporter', {
       name: 'E2E Coverage Report',
       outputFile: '.reports/monocart/index.html',

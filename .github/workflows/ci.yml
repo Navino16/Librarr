@@ -72,6 +72,15 @@ jobs:
           files: .reports/coverage/cobertura-coverage.xml
           fail_ci_if_error: false
 
+      - name: Upload test results to Codecov
+        if: ${{ !cancelled() }}
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: .reports/junit.xml
+          report_type: test_results
+          fail_ci_if_error: false
+
   e2e:
     name: E2E
     runs-on: ubuntu-latest
@@ -103,3 +112,12 @@ jobs:
             .reports/test-results/
             .reports/monocart/
           retention-days: 7
+
+      - name: Upload E2E test results to Codecov
+        if: ${{ !cancelled() }}
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: .reports/junit-e2e.xml
+          report_type: test_results
+          fail_ci_if_error: false
