@@ -111,7 +111,7 @@ jobs:
           touch "/tmp/digests/${digest#sha256:}"
 
       - name: Upload digest
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: digests-${{ matrix.suffix }}
           path: /tmp/digests/*
@@ -222,6 +222,7 @@ jobs:
   notify-discord:
     name: Discord Release Notification
     runs-on: ubuntu-latest
+    permissions: {}
     needs: [release]
     if: startsWith(github.ref, 'refs/tags/')
     steps:
