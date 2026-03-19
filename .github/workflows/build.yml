@@ -233,9 +233,9 @@ jobs:
         run: |
           BODY=$(echo "$CHANGELOG" | head -c 1800)
           PAYLOAD=$(jq -n \
-            --arg content "<@&1483420218087706665>" \
+            --arg content "<@&${{ vars.DISCORD_RELEASE_ROLE_ID }}>" \
             --arg title "Librarr ${TAG}" \
-            --arg url "https://github.com/Navino16/Librarr/releases/tag/${TAG}" \
+            --arg url "https://github.com/${{ github.repository }}/releases/tag/${TAG}"
             --arg description "$BODY" \
             '{content: $content, embeds: [{title: $title, url: $url, description: $description, color: 6500081}]}')
           curl -H "Content-Type: application/json" -d "$PAYLOAD" "$WEBHOOK_URL"
