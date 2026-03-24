@@ -33,6 +33,7 @@ const dataSource = new DataSource({
   type: 'better-sqlite3',
   database: path.join(CONFIG_DIR, 'db', 'librarr.db'),
   synchronize: isProduction ? false : synchronize,
+  migrationsRun: isProduction,
   logging: false,
   enableWAL: true,
   entities: [

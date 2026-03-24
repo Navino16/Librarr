@@ -95,4 +95,22 @@ describe('datasource', () => {
 
     expect(capturedConfigs[0].synchronize).toBe(false);
   });
+
+  it('enables migrationsRun in production', async () => {
+    vi.stubEnv('NODE_ENV', 'production');
+    const spy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+
+    await import('@server/datasource');
+
+    expect(capturedConfigs[0].migrationsRun).toBe(true);
+    spy.mockRestore();
+  });
+
+  it('disables migrationsRun in development', async () => {
+    vi.stubEnv('NODE_ENV', 'development');
+
+    await import('@server/datasource');
+
+    expect(capturedConfigs[0].migrationsRun).toBe(false);
+  });
 });
